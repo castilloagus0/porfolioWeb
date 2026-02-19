@@ -1,19 +1,29 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
+---
 
-<style>
+<div class="min-h-screen w-full bg-black relative overflow-hidden">
+	<div
+		class="absolute inset-0 z-0"
+		style="background-image:
+			radial-gradient(circle at 50% 100%, rgba(70, 85, 110, 0.5) 0%, transparent 60%),
+			radial-gradient(circle at 50% 100%, rgba(99, 102, 241, 0.4) 0%, transparent 70%),
+			radial-gradient(circle at 50% 100%, rgba(181, 184, 208, 0.3) 0%, transparent 80%);
+		"
+	></div>
+
+	<div class="relative z-10">
+		<slot />
+	</div>
+</div>
+
+<style is:global>
+	:root {
+		--var-color-primary: #162427;
+		--var-color-secondary: #56A5DD;
+		--var-color-tertiary: #56A5DD;
+	}
+
 	html,
 	body {
 		margin: 0;
