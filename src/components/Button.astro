@@ -1,0 +1,126 @@
+---
+type ButtonColor = 'primary' | 'outline' | 'white' | 'outline-white';
+
+interface Props {
+  text: string;
+  href?: string;
+  color?: ButtonColor;
+  type?: 'button' | 'submit';
+  className?: string;
+  id?: string;
+}
+
+const {
+  text,
+  href,
+  color = 'primary',
+  type = 'button',
+  className = '',
+  id,
+} = Astro.props;
+
+// Configuración de colores para el efecto hover
+const colorConfig = {
+  primary: {
+    base: 'bg-indigo-500',
+    hover: 'bg-indigo-600',
+    corner: 'bg-indigo-700',
+    text: 'text-white',
+  },
+  outline: {
+    base: 'bg-sky-500',
+    hover: 'bg-sky-600',
+    corner: 'bg-sky-700',
+    text: 'text-white',
+  },
+  white: {
+    base: 'bg-white',
+    hover: 'bg-gray-100',
+    corner: 'bg-gray-200',
+    text: 'text-gray-900',
+  },
+  'outline-white': {
+    base: 'bg-indigo-500',
+    hover: 'bg-indigo-600',
+    corner: 'bg-indigo-700',
+    text: 'text-white',
+  },
+};
+
+const colors = colorConfig[color];
+const hasIcon = Astro.slots.has('icon');
+const baseClass = 'relative flex items-center px-6 py-3 overflow-hidden font-medium transition-all rounded-md group';
+const fullClass = [baseClass, colors.base, className].filter(Boolean).join(' ');
+---
+
+{href ? (
+  <a href={href} class={fullClass} id={id}>
+    <!-- Corner decorativo superior derecho -->
+    <span
+      class={`absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out ${colors.corner} rounded group-hover:-mr-4 group-hover:-mt-4`}
+    >
+      <span
+        class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"
+      ></span>
+    </span>
+    
+    <!-- Corner decorativo inferior izquierdo -->
+    <span
+      class={`absolute bottom-0 rotate-180 left-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out ${colors.corner} rounded group-hover:-ml-4 group-hover:-mb-4`}
+    >
+      <span
+        class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"
+      ></span>
+    </span>
+    
+    <!-- Overlay que se desliza desde la izquierda -->
+    <span
+      class={`absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full ${colors.hover} rounded-md group-hover:translate-x-0`}
+    ></span>
+    
+    <!-- Contenido del botón -->
+    <span class={`relative w-full text-left ${colors.text} transition-colors duration-200 ease-in-out flex items-center gap-2`}>
+      {hasIcon && (
+        <span class="flex shrink-0 [&>svg]:w-5 [&>svg]:h-5">
+          <slot name="icon" />
+        </span>
+      )}
+      {text}
+    </span>
+  </a>
+) : (
+  <button type={type} class={fullClass} id={id}>
+    <!-- Corner decorativo superior derecho -->
+    <span
+      class={`absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out ${colors.corner} rounded group-hover:-mr-4 group-hover:-mt-4`}
+    >
+      <span
+        class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"
+      ></span>
+    </span>
+    
+    <!-- Corner decorativo inferior izquierdo -->
+    <span
+      class={`absolute bottom-0 rotate-180 left-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out ${colors.corner} rounded group-hover:-ml-4 group-hover:-mb-4`}
+    >
+      <span
+        class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"
+      ></span>
+    </span>
+    
+    <!-- Overlay que se desliza desde la izquierda -->
+    <span
+      class={`absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full ${colors.hover} rounded-md group-hover:translate-x-0`}
+    ></span>
+    
+    <!-- Contenido del botón -->
+    <span class={`relative w-full text-left ${colors.text} transition-colors duration-200 ease-in-out flex items-center gap-2`}>
+      {hasIcon && (
+        <span class="flex shrink-0 [&>svg]:w-5 [&>svg]:h-5">
+          <slot name="icon" />
+        </span>
+      )}
+      {text}
+    </span>
+  </button>
+)}

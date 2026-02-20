@@ -2,6 +2,18 @@
 import '../styles/global.css';
 ---
 
+<style is:global>
+	@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700&display=swap');
+	
+	:root {
+		font-family: 'Inter', sans-serif;
+	}
+	
+	h1, h2, h3, h4, h5, h6, .font-heading {
+		font-family: 'Outfit', sans-serif;
+	}
+</style>
+
 <div class="min-h-screen w-full bg-black relative overflow-hidden">
 	<div
 		class="absolute inset-0 z-0"

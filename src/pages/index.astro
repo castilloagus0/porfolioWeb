@@ -1,9 +1,66 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import navbar from '../pages/navbar.astro';
+import {HomeIcon} from '../components/Icons.astro'
 
 ---
 
+<style is:global>
+	@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700&display=swap');
+	
+	:root {
+		font-family: 'Inter', sans-serif;
+	}
+	
+	h1, h2, h3, h4, h5, h6, .font-heading {
+		font-family: 'Outfit', sans-serif;
+	}
+</style>
+
 <Layout>
-	<navbar />
+	<header class="px-6 sm:px-10 py-6 bg-gradient-to-b">
+		<nav
+			class="max-w-6xl mx-auto flex items-center justify-between text-xs sm:text-sm text-slate-200 font-medium tracking-[0.25em]"
+		>
+			<!-- Brand -->
+			<div class="flex items-center gap-3 sm:gap-4">
+				<span set:html={HomeIcon()}></span>
+			</div>
+
+			<!-- Links + CTA -->
+			<div class="flex items-center gap-5 sm:gap-8">
+				<a href="#about-me" class="text-[0.6rem] sm:text-xs text-slate-300 hover:text-white transition">
+					SOBRE MI
+				</a>
+				<a href="#experience" class="text-[0.6rem] sm:text-xs text-slate-300 hover:text-white transition">
+					EXPERIENCIA
+				</a>
+				<a href="#projects" class="text-[0.6rem] sm:text-xs text-slate-300 hover:text-white transition">
+					PROYECTOS
+				</a>
+				<button
+					class="ml-2 px-3 sm:px-4 py-2 rounded-full border border-sky-400/80 text-[0.6rem] sm:text-xs font-semibold tracking-[0.3em] text-sky-300 hover:bg-sky-500/10 hover:border-sky-300 transition"
+				>
+					CONTACTAME
+				</button>
+			</div>
+		</nav>
+	</header>
+
+	<!-- Contenido de ejemplo para ver la tipografía -->
+	<main class="px-6 sm:px-10 py-20">
+		<div class="max-w-4xl mx-auto space-y-8">
+			<h1 class="text-5xl font-bold text-white font-heading">
+				Ejemplo de Tipografía - Outfit
+			</h1>
+			<h2 class="text-3xl font-semibold text-slate-300 font-heading">
+				Subtítulo con Outfit
+			</h2>
+			<p class="text-lg text-slate-400 leading-relaxed">
+				Este es un ejemplo de texto con la fuente Inter. La fuente Inter es excelente para lectura de texto largo y proporciona una excelente legibilidad en pantallas digitales.
+			</p>
+			<p class="text-base text-slate-300">
+				Inter es una fuente sans-serif diseñada específicamente para interfaces de usuario y lectura en pantalla. Es clara, legible y moderna.
+			</p>
+		</div>
+	</main>
 </Layout>
