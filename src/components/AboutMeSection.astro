@@ -1,14 +1,23 @@
 ---
 ---
-<section id="about-me" class="min-h-[calc(100vh-80px)] flex items-stretch">
+<section id="about-me" class="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-stretch">
+	<!-- Fondo que ocupa siempre el lado izquierdo -->
+	<div class="pointer-events-none absolute inset-y-0 left-0 w-full lg:w-1/2 bg-gray-900 -z-10"></div>
+
 	<div class="grid grid-cols-1 lg:grid-cols-2 w-full max-w-7xl mx-auto">
-		<!-- Imagen - sin recuadro, integrada con el fondo -->
-		<div class="relative order-2 lg:order-1 min-h-[400px] lg:min-h-0 bg-gray-900">
-			<img 
-				src="/person.webp" 
-				alt="Foto profesional de Agustín" 
-				class="absolute inset-0 w-full h-full object-cover object-top"
-			/>
+		<!-- Imagen centrada dentro de un círculo azul -->
+		<div class="order-2 lg:order-1 min-h-[400px] lg:min-h-0 flex items-center justify-center">
+			<div class="relative group">
+				<div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+				
+				<div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-slate-900 rounded-full border border-white/10 overflow-hidden">
+					<img 
+						src="/about-me.webp" 
+						alt="Agustín" 
+						class="w-full h-full object-cover group-hover:scale-100 transition duration-500"
+					/>
+				</div>
+			</div>
 		</div>
 
 		<!-- Contenido -->
