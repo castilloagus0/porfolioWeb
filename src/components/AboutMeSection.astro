@@ -1,4 +1,5 @@
 ---
+import { CV_PDF_PATH } from '../config/contact';
 ---
 <section id="about-me" class="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-stretch">
 	<!-- Fondo que ocupa siempre el lado izquierdo -->
@@ -38,16 +39,30 @@
 				Soy Agustín, diseñador de producto senior especializado en experiencias digitales de alto rendimiento. Me enfoco en crear interfaces claras, modernas y centradas en las personas, conectando la complejidad técnica con soluciones simples y usables.
 			</p>
 
-			<!-- Botón CTA -->
-			<a 
-				href="#projects" 
-				class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-colors w-fit text-sm"
-			>
-				VER PROYECTOS
-				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-				</svg>
-			</a>
+			<!-- Botones CTA -->
+			<div class="flex flex-wrap gap-4">
+				<a 
+					href="#projects" 
+					class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-colors w-fit text-sm"
+				>
+					VER PROYECTOS
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</a>
+				<a 
+					href={CV_PDF_PATH}
+					download
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center gap-2 px-6 py-3 bg-transparent border border-slate-500 hover:border-blue-500 text-white font-semibold rounded-lg transition-colors w-fit text-sm"
+				>
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+					</svg>
+					DESCARGAR CV
+				</a>
+			</div>
 
 			<!-- Estadísticas -->
 			<div class="flex gap-12 pt-12 mt-4">
