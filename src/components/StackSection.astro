@@ -1,0 +1,90 @@
+---
+// Iconos: Simple Icons (cdn.simpleicons.org). CSS usa slug "css". Java no está en Simple Icons → Devicons.
+const stackItems = [
+	{ name: 'HTML', slug: 'html5', hex: 'E34F26', cdn: 'simpleicons' },
+	{ name: 'CSS', slug: 'css', hex: '1572B6', cdn: 'simpleicons' },
+	{ name: 'JS', slug: 'javascript', hex: 'F7DF1E', cdn: 'simpleicons' },
+	{ name: 'TS', slug: 'typescript', hex: '3178C6', cdn: 'simpleicons' },
+	{ name: 'PHP', slug: 'php', hex: '777BB4', cdn: 'simpleicons' },
+	{ name: 'Node', slug: 'nodedotjs', hex: '339933', cdn: 'simpleicons' },
+	{ name: 'Docker', slug: 'docker', hex: '2496ED', cdn: 'simpleicons' },
+	{ name: 'MongoDB', slug: 'mongodb', hex: '47A248', cdn: 'simpleicons' },
+	{ name: 'MySQL', slug: 'mysql', hex: '4479A1', cdn: 'simpleicons' },
+	{ name: 'Java', slug: 'java', hex: 'ED8B00', cdn: 'devicons' },
+	{ name: 'Tailwind', slug: 'tailwindcss', hex: '06B6D4', cdn: 'simpleicons' },
+	{ name: 'Angular', slug: 'angular', hex: 'DD0031', cdn: 'simpleicons' },
+	{ name: 'React', slug: 'react', hex: '61DAFB', cdn: 'simpleicons' },
+	{ name: 'Next.js', slug: 'nextdotjs', hex: 'FFFFFF', cdn: 'simpleicons' },
+	{ name: 'n8n', slug: 'n8n', hex: 'EA4B71', cdn: 'simpleicons' },
+];
+---
+
+<section id="stack" class="relative py-12 sm:py-16 overflow-hidden">
+	<div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mb-8">
+		<h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white uppercase tracking-tight font-heading mb-2">
+			Stack tecnológico
+		</h2>
+		<div class="w-16 h-1 bg-blue-500 rounded mt-2"></div>
+	</div>
+
+	<div class="stack-slider-mask max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mb-8">
+		<div class="stack-slider-track flex gap-4" aria-hidden="true">
+			{[...stackItems, ...stackItems].map((item) => (
+				<div
+					class="stack-card flex-shrink-0 w-28 sm:w-32 h-24 sm:h-28 rounded-xl border border-slate-700/60 bg-slate-800/60 backdrop-blur-sm flex flex-col items-center justify-center gap-2 px-3 shadow-lg hover:border-slate-500/60 hover:bg-slate-800/80 transition-all duration-300"
+				>
+					<div class="stack-icon w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center flex-shrink-0">
+						{item.slug ? (
+							<img
+								src={item.cdn === 'devicons'
+									? `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${item.slug}/${item.slug}-original.svg`
+									: `https://cdn.simpleicons.org/${item.slug}/${item.hex}`}
+								alt=""
+								class="w-full h-full object-contain"
+								width="48"
+								height="48"
+								loading="lazy"
+							/>
+						) : (
+							<svg
+								viewBox="0 0 24 24"
+								class="w-full h-full"
+								style={`fill: #${item.hex}`}
+								xmlns="http://www.w3.org/2000/svg"
+								aria-hidden="true"
+							>
+								<path d="M3 3h7v4H7V5H5v2H3V3zm14 0h4v4h-2V5h-2V3zm-7 0h4v4h-4V3zM3 10h4v4H3v-4zm14 0h4v4h-4v-4zm-7 0h4v4h-4v-4zM5 19h2v2H3v-4h2v2zm14 0h2v2h-2v2h-2v-4h2v2zm-7 0h4v4h-4v-4z" />
+							</svg>
+						)}
+					</div>
+					<span class="text-slate-200 text-xs sm:text-sm font-medium truncate w-full text-center">{item.name}</span>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.stack-slider-mask {
+		overflow: hidden;
+		user-select: none;
+	}
+	.stack-slider-track {
+		width: max-content;
+		animation: stack-slide 40s linear infinite;
+	}
+	.stack-slider-track:hover {
+		animation-play-state: paused;
+	}
+	.stack-card {
+		will-change: transform;
+	}
+	@keyframes stack-slide {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-50%);
+		}
+	}
+</style>

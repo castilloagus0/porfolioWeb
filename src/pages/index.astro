@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import AboutMeSection from '../components/AboutMeSection.astro';
 import ExperienceSection from '../components/ExperienceSection.astro';
 import ProjectsSection from '../components/ProjectsSection.astro';
+import StackSection from '../components/StackSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 import Home from '../components/HomeSection.astro';
 import Footer from '../components/Footer.astro';
@@ -40,6 +41,9 @@ import { CV_PDF_PATH } from '../config/contact';
 				</a>
 				<a href="#projects" class="text-sm text-slate-300 hover:text-white transition-colors">
 					PROYECTOS
+				</a>
+				<a href="#stack" class="text-sm text-slate-300 hover:text-white transition-colors">
+					STACK
 				</a>
 				<a
 					href="#contact"
@@ -85,6 +89,12 @@ import { CV_PDF_PATH } from '../config/contact';
 					PROYECTOS
 				</a>
 				<a
+					href="#stack"
+					class="px-3 py-2 text-sm rounded-md text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
+				>
+					STACK
+				</a>
+				<a
 					href="#contact"
 					class="mt-2 px-3 py-2 text-sm font-semibold rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors text-center"
 				>
@@ -98,6 +108,7 @@ import { CV_PDF_PATH } from '../config/contact';
 		<Layout >
 			<Home />
 			<ProjectsSection />
+			<StackSection />
 			<ExperienceSection />
 			<AboutMeSection />
 			<ContactSection />
@@ -126,7 +137,7 @@ import { CV_PDF_PATH } from '../config/contact';
 			});
 
 			// Scroll-spy: actualizar la ruta (hash) al pasar por cada sección
-			const SECTION_IDS = ['home', 'projects', 'experience', 'about-me', 'contact'];
+			const SECTION_IDS = ['home', 'projects', 'stack', 'experience', 'about-me', 'contact'];
 
 			function getCurrentSection() {
 				const scrollY = window.scrollY;
