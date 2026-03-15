@@ -5,6 +5,7 @@ import AboutMeSection from '../components/AboutMeSection.astro';
 import ExperienceSection from '../components/ExperienceSection.astro';
 import ProjectsSection from '../components/ProjectsSection.astro';
 import ContactSection from '../components/ContactSection.astro';
+import Home from '../components/HomeSection.astro';
 import Footer from '../components/Footer.astro';
 import { CV_PDF_PATH } from '../config/contact';
 ---
@@ -22,15 +23,15 @@ import { CV_PDF_PATH } from '../config/contact';
 </style>
 
 <BaseLayout>
-	<header class="fixed top-0 left-0 right-0 z-50 w-full px-6 sm:px-10 py-5 bg-[#111827]/95 backdrop-blur-sm border-b border-slate-800/50">
+	<header class="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-8 py-4 sm:py-5 bg-[#111827]/95 backdrop-blur-sm border-b border-slate-800/50">
 		<nav class="max-w-6xl mx-auto flex items-center justify-between">
 			<!-- Brand -->
 			<a href="/" class="text-lg sm:text-xl font-bold text-white tracking-tight font-heading">
 				AGUSDESIGN
 			</a>
 
-			<!-- Links + CTA -->
-			<div class="flex items-center gap-4 sm:gap-6">
+			<!-- Desktop links + CTA -->
+			<div class="hidden md:flex items-center gap-4 lg:gap-6">
 				<a href="#about-me" class="text-sm text-slate-300 hover:text-white transition-colors">
 					SOBRE MI
 				</a>
@@ -42,22 +43,127 @@ import { CV_PDF_PATH } from '../config/contact';
 				</a>
 				<a
 					href="#contact"
-					class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-lg transition-colors"
+					class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-lg transition-colors"
 				>
 					CONTACTAME
 				</a>
 			</div>
+
+			<!-- Mobile menu button -->
+			<button
+				id="mobile-menu-button"
+				class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800/70 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 focus:ring-blue-500"
+				type="button"
+				aria-label="Abrir menú de navegación"
+				aria-expanded="false"
+			>
+				<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+				</svg>
+			</button>
 		</nav>
+
+		<!-- Mobile menu -->
+		<div id="mobile-menu" class="md:hidden max-w-6xl mx-auto mt-3 px-1 hidden">
+			<div class="flex flex-col gap-1 rounded-lg border border-slate-800 bg-slate-900/95 p-3">
+				<a
+					href="#about-me"
+					class="px-3 py-2 text-sm rounded-md text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
+				>
+					SOBRE MI
+				</a>
+				<a
+					href="#experience"
+					class="px-3 py-2 text-sm rounded-md text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
+				>
+					EXPERIENCIA
+				</a>
+				<a
+					href="#projects"
+					class="px-3 py-2 text-sm rounded-md text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
+				>
+					PROYECTOS
+				</a>
+				<a
+					href="#contact"
+					class="mt-2 px-3 py-2 text-sm font-semibold rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors text-center"
+				>
+					CONTACTAME
+				</a>
+			</div>
+		</div>
 	</header>
 	
-	<div class="pt-20">
-		<Layout>
-			<AboutMeSection />
-			<ExperienceSection />
+	<div class="pt-20 sm:pt-24">
+		<Layout >
+			<Home />
 			<ProjectsSection />
+			<ExperienceSection />
+			<AboutMeSection />
 			<ContactSection />
 			<Footer />
 		</Layout>
 	</div>
+
+	<script>
+		if (typeof window !== 'undefined') {
+			window.addEventListener('DOMContentLoaded', () => {
+				const button = document.getElementById('mobile-menu-button');
+				const menu = document.getElementById('mobile-menu');
+
+				if (!button || !menu) return;
+
+				button.addEventListener('click', () => {
+					const isHidden = menu.classList.contains('hidden');
+					if (isHidden) {
+						menu.classList.remove('hidden');
+						button.setAttribute('aria-expanded', 'true');
+					} else {
+						menu.classList.add('hidden');
+						button.setAttribute('aria-expanded', 'false');
+					}
+				});
+			});
+
+			// Scroll-spy: actualizar la ruta (hash) al pasar por cada sección
+			const SECTION_IDS = ['home', 'projects', 'experience', 'about-me', 'contact'];
+
+			function getCurrentSection() {
+				const scrollY = window.scrollY;
+				const threshold = scrollY + window.innerHeight * 0.35;
+				let current = SECTION_IDS[0];
+				for (const id of SECTION_IDS) {
+					const el = document.getElementById(id);
+					if (!el) continue;
+					const top = el.getBoundingClientRect().top + scrollY;
+					if (top <= threshold) current = id;
+				}
+				return current;
+			}
+
+			function updateHashFromScroll() {
+				const id = getCurrentSection();
+				if (!id) return;
+				const newHash = '#' + id;
+				if (window.location.hash !== newHash) {
+					history.replaceState(null, '', newHash);
+				}
+			}
+
+			let ticking = false;
+			window.addEventListener('scroll', () => {
+				if (!ticking) {
+					requestAnimationFrame(() => {
+						updateHashFromScroll();
+						ticking = false;
+					});
+					ticking = true;
+				}
+			}, { passive: true });
+
+			// Actualizar al cargar (después del scroll que aplica el navegador si hay hash)
+			window.addEventListener('load', () => requestAnimationFrame(updateHashFromScroll));
+		}
+	</script>
 
 </BaseLayout>

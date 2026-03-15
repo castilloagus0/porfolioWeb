@@ -1,0 +1,86 @@
+---
+import { CV_PDF_PATH } from '../config/contact';
+---
+<section id="home" class="relative overflow-hidden min-h-[calc(100vh-80px)] flex items-stretch">
+	<!-- Fondo que ocupa siempre el lado izquierdo -->
+	<div class="pointer-events-none absolute inset-y-0 left-0 w-full lg:w-1/2 bg-gray-900 -z-10"></div>
+
+	<div class="grid grid-cols-1 lg:grid-cols-2 w-full max-w-7xl mx-auto">
+		<!-- Imagen centrada dentro de un círculo azul -->
+		<div class="order-1 lg:order-2 min-h-[360px] sm:min-h-[300px] lg:min-h-0 flex items-center justify-center px-6 sm:px-10 lg:px-0 pt-10 lg:pt-0">
+			<div class="relative group">
+				<div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+				
+				<div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-slate-900 rounded-full border border-white/10 overflow-hidden">
+					<img 
+						src="/about-me.webp" 
+						alt="Agustín" 
+						class="w-full h-full object-cover group-hover:scale-100 transition duration-500"
+					/>
+				</div>
+			</div>
+		</div>
+
+		<!-- Contenido -->
+		<div class="order-2 lg:order-1 flex flex-col justify-center px-6 sm:px-12 lg:px-16 pb-12 lg:py-16">
+			<!-- Badge -->
+			<span class="text-green-400 text-[2px] sm:text-sm tracking-[0.2em] mb-4">
+				DISPONIBLE PARA PROYECTOS
+			</span>
+
+			<!-- Título principal -->
+			<h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight font-heading mb-5">
+				Diseñando el futuro 
+				<span class="text-blue-400">Digital</span>
+			</h1>
+
+			<!-- Descripción -->
+			<div class="text-base sm:text-lg leading-relaxed max-w-xl mb-8">
+				<p class="text-slate-400">
+					<!-- Soy Agustín, diseñador de producto senior especializado en experiencias digitales de alto rendimiento. Me enfoco en crear interfaces claras, modernas y centradas en las personas, conectando la complejidad técnica con soluciones simples y usables. -->
+					Agustín Castillo, estudiante de Ingeniería en Sistemas de Información de la UTN FRVM, de nivel avanzado. Desarrollador Web Full Stack con más de 3 años de experiencia.
+				</p>
+				<p class="mt-2 font-semibold text-blue-400">
+					Resuelvo problemas reales mediante un profundo análisis y posterior desarrollo.
+				</p>
+			</div>
+
+			<!-- Botones CTA -->
+			<div class="flex flex-row flex-wrap gap-4 items-center">
+				<a 
+					href="#projects" 
+					class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-colors w-fit text-sm"
+				>
+					VER PROYECTOS
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+					</svg>
+				</a>
+				<a 
+					href={CV_PDF_PATH}
+					download
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center gap-2 px-6 py-3 bg-transparent border border-slate-500 hover:border-blue-500 text-white font-semibold rounded-lg transition-colors w-fit text-sm"
+				>
+					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+					</svg>
+					DESCARGAR CV
+				</a>
+			</div>
+
+			<!-- Estadísticas -->
+			<div class="flex gap-12 pt-12 mt-4">
+				<div>
+					<p class="text-2xl sm:text-3xl font-bold text-white">5+</p>
+					<p class="text-slate-500 text-sm font-medium mt-0.5">AÑOS DE EXPERIENCIA</p>
+				</div>
+				<div>
+					<p class="text-2xl sm:text-3xl font-bold text-white">10+</p>
+					<p class="text-slate-500 text-sm font-medium mt-0.5">PROYECTOS</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
