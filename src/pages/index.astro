@@ -163,6 +163,22 @@ import { CV_PDF_PATH } from '../config/contact';
 
 			// Actualizar al cargar (después del scroll que aplica el navegador si hay hash)
 			window.addEventListener('load', () => requestAnimationFrame(updateHashFromScroll));
+
+			// Scroll reveal: animar elementos cuando entran en viewport
+			const revealEls = document.querySelectorAll('[data-reveal]');
+			if (revealEls.length > 0) {
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('in-view');
+							}
+						});
+					},
+					{ rootMargin: '0px 0px -8% 0px', threshold: 0 }
+				);
+				revealEls.forEach((el) => observer.observe(el));
+			}
 		}
 	</script>
 
